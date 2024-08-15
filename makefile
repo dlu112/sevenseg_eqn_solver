@@ -3,7 +3,7 @@ CXXFLAGS = -Wall -g
 
 TARGET = test.exe
 
-SRCS = sevenseg_solver.test.cpp sevenseg_solver.cpp
+SRCS = Solver.test.cpp Solver.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

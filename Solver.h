@@ -5,8 +5,9 @@
 #include <string>
 #include <vector>
 
-class SevenSegSolver {
+class Solver {
     private:
+        // maps used for validating adding, removing, and swapping segments
         std::map<char, std::vector<char>> add_vals = {
             {'1', {'7'}},
             {'3', {'9'}},

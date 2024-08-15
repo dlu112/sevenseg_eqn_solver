@@ -1,9 +1,9 @@
-#include "sevenseg_solver.h"
+#include "Solver.h"
 #include <iostream>
 
 // Converts one half of a string equation to an integer result
 // TODO: handle negative values
-int SevenSegSolver::solve_string_eqn(std::string const& eqn) {    
+int Solver::solve_string_eqn(std::string const& eqn) {    
     std::vector<char> operators;
     std::vector<int> values;
     std::string temp;
@@ -32,7 +32,7 @@ int SevenSegSolver::solve_string_eqn(std::string const& eqn) {
 }
 
 // Checks if a given string equation of form "x = y" is valid
-bool SevenSegSolver::check_eqn(std::string const& eqn) {
+bool Solver::check_eqn(std::string const& eqn) {
     // std::cout << "Checking equation: " << eqn << std::endl;
     // split string into the two halves of the equation
     int splitter = eqn.find('=');
@@ -48,7 +48,7 @@ bool SevenSegSolver::check_eqn(std::string const& eqn) {
 }
 
 // Swap a segment in the equation and check if valid
-std::string SevenSegSolver::swap_and_check(std::map<char, std::vector<char>> const& map, 
+std::string Solver::swap_and_check(std::map<char, std::vector<char>> const& map, 
                                             std::string const& eqn,
                                             size_t const& it) {
     // specific map to swap from is passed by reference
@@ -74,7 +74,7 @@ std::string SevenSegSolver::swap_and_check(std::map<char, std::vector<char>> con
 // TODO: handle invalid inputs
 // TODO: handle negative integers
 // TODO: allow the equals sign to be moved
-std::string SevenSegSolver::solve(std::string const& eqn) {
+std::string Solver::solve(std::string const& eqn) {
     solved = false;
 
     // check initial equation for validity

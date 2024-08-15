@@ -1,10 +1,10 @@
-#include "sevenseg_solver.h"
+#include "Solver.h"
 #include <iostream>
 #include <cassert>
 
 // TODO: write proper unit tests
 int main() {
-    SevenSegSolver solver;
+    Solver solver;
     // manual test cases
     assert(solver.solve("4 + 4 + 4 - 4 = 18") == "4 + 4 + 4 + 4 = 16");
     assert(solver.solve("7 + 1 = 5") == "7 - 1 = 6");
