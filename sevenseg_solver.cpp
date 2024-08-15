@@ -33,6 +33,7 @@ int SevenSegSolver::solve_string_eqn(std::string const& eqn) {
 
 // Checks if a given string equation of form "x = y" is valid
 bool SevenSegSolver::check_eqn(std::string const& eqn) {
+    // std::cout << "Checking equation: " << eqn << std::endl;
     // split string into the two halves of the equation
     int splitter = eqn.find('=');
     std::string lhs_str = eqn.substr(0, splitter);
@@ -51,6 +52,7 @@ bool SevenSegSolver::check_eqn(std::string const& eqn) {
 // TODO: handle invalid inputs
 std::string SevenSegSolver::solve(std::string const& eqn) {
     // check initial equation for validity
+    std::cout << "Initial equation: " << eqn << std::endl;
     if (check_eqn(eqn)) return eqn;
 
     std::string eqn2;
