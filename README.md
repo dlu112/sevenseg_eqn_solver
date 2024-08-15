@@ -13,6 +13,6 @@ Constraints:
 ## Seven-Segment Representation
 Each digit from 0-9, the addition sign, and the negative sign can be represented as a seven-segment display value.
 
-![Seven segment representation of 0-9](seven_segment_digits.png "Seven segment digit representation")
+![Seven segment representation of 0-9](img/seven_segment_digits.png "Seven segment digit representation")
 
 The addition sign can be represented as a vertical and horizontal segment, the subtraction sign as a single horizontal segment, and the equals sign as a pair of horizontal segments.
