@@ -60,6 +60,7 @@ std::string SevenSegSolver::swap_and_check(std::map<char, std::vector<char>> con
             if (check_eqn(temp)) {
                 // toggle flag if solved
                 solved = true;
+                std::cout << "Solution: " << temp << std::endl;
                 return temp;
             }
         }
