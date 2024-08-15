@@ -1,10 +1,17 @@
-CC = g++
-CFLAGS = -Wall -g
+CXX = g++
+CXXFLAGS = -Wall -g
 
-test.exe: test.o sevenseg_solver.o
-	$(CC) $(CFLAGS) -o test.exe test.o sevenseg_solver.o
+TARGET = test.exe
 
-test.o: test.cpp sevenseg_solver.h
-	$(CC) $(CFLAGS) -c test.cpp
+SRCS = sevenseg_solver.test.cpp sevenseg_solver.cpp
 
-sevenseg_solver.o: sevenseg_solver.h
+OBJS = $(SRCS:.cpp=.o)
+
+$(TARGET): $(OBJS)
+	$(CXX) $(CXX_FLAGS) -o $(TARGET) $(OBJS)
+
+%.o: %.cpp
+	$(CXX) $(CXX_FLAGS) -c $< -o $@
+
+clean:
+	rm -f $(TARGET) $(OBJS)
