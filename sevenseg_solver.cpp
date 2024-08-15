@@ -33,7 +33,7 @@ int SevenSegSolver::solve_string_eqn(std::string const& eqn) {
 
 // Checks if a given string equation of form "x = y" is valid
 bool SevenSegSolver::check_eqn(std::string const& eqn) {
-    // std::cout << "Checking equation: " << eqn << std::endl;
+    std::cout << "Checking equation: " << eqn << std::endl;
     // split string into the two halves of the equation
     int splitter = eqn.find('=');
     std::string lhs_str = eqn.substr(0, splitter);
@@ -47,10 +47,30 @@ bool SevenSegSolver::check_eqn(std::string const& eqn) {
     return lhs_eqn == rhs_eqn;
 }
 
+std::string SevenSegSolver::swap_and_check(std::map<char, std::vector<char>> const& map, 
+                                            std::string const& eqn,
+                                            size_t const& it) {
+    if (map.find(eqn[it]) != map.end()) {
+        // for each add_val replace and check validity of eqn
+        for (char v : map.find(eqn[it])->second) {
+            std::string temp = eqn;
+            temp[it] = v;
+            if (check_eqn(temp)) {
+                solved = true;
+                return temp;
+            }
+        }
+    }
+
+    return eqn;
+}
+
 // Solve the 7-Segment Equation Problem
 // Assumes inputs are in correct format and that a valid answer exists
 // TODO: handle invalid inputs
 std::string SevenSegSolver::solve(std::string const& eqn) {
+    solved = false;
+
     // check initial equation for validity
     std::cout << "Initial equation: " << eqn << std::endl;
     if (check_eqn(eqn)) return eqn;
@@ -62,15 +82,18 @@ std::string SevenSegSolver::solve(std::string const& eqn) {
             // TODO: reformat this
 
             // check for valid val from swapping a stick from c
-            if (swap_vals.find(eqn[i]) != swap_vals.end()) {
-                // foreach swap_val, swap it into the eqn
-                for (char v : swap_vals.find(eqn[i])->second) {
-                    // replace with swapval and check validity of eqn
-                    std::string temp = eqn;
-                    temp[i] = v;
-                    if (check_eqn(temp)) return temp;
-                }
-            }
+            std::string res = swap_and_check(swap_vals, eqn, i);
+            if (solved) return res;
+
+            // if (swap_vals.find(eqn[i]) != swap_vals.end()) {
+            //     // foreach swap_val, swap it into the eqn
+            //     for (char v : swap_vals.find(eqn[i])->second) {
+            //         // replace with swapval and check validity of eqn
+            //         std::string temp = eqn;
+            //         temp[i] = v;
+            //         if (check_eqn(temp)) return temp;
+            //     }
+            // }
             
             // also check for valid val from removing a stick from c
             if (remove_vals.find(eqn[i]) != remove_vals.end()) {
@@ -83,14 +106,17 @@ std::string SevenSegSolver::solve(std::string const& eqn) {
                     // iterate through the entire string again
                     for (size_t j = 0; j < eqn2.size(); j++) {
                         // check for valid add_vals
-                        if (add_vals.find(eqn2[j]) != add_vals.end()) {
-                            // for each add_val replace and check validity of eqn
-                            for (char v2 : add_vals.find(eqn2[j])->second) {
-                                std::string temp = eqn2;
-                                temp[j] = v2;
-                                if (check_eqn(temp)) return temp;
-                            }
-                        }
+                        std::string res = swap_and_check(add_vals, eqn2, j);
+                        if (solved) return res;
+
+                        // if (add_vals.find(eqn2[j]) != add_vals.end()) {
+                        //     // for each add_val replace and check validity of eqn
+                        //     for (char v2 : add_vals.find(eqn2[j])->second) {
+                        //         std::string temp = eqn2;
+                        //         temp[j] = v2;
+                        //         if (check_eqn(temp)) return temp;
+                        //     }
+                        // }
                     }
                 }
             }            

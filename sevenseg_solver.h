@@ -32,8 +32,13 @@ class SevenSegSolver {
             {'0', {'6', '9'}}
         };
 
+        bool solved = false;
+
         int solve_string_eqn(std::string const& eqn);
         bool check_eqn(std::string const& eqn);
+        std::string swap_and_check(std::map<char, std::vector<char>> const& map, 
+                                    std::string const& eqn,
+                                    size_t const& it);
 
     public:
         std::string solve(std::string const& eqn);
