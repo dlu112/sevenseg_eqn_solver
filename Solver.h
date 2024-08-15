@@ -1,5 +1,5 @@
-#ifndef SEVENSEG_SOLVER_H
-#define SEVENSEG_SOLVER_H
+#ifndef SOLVER_H
+#define SOLVER_H
 
 #include <map>
 #include <string>
