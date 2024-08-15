@@ -47,15 +47,18 @@ bool SevenSegSolver::check_eqn(std::string const& eqn) {
     return lhs_eqn == rhs_eqn;
 }
 
+// Swap a segment in the equation and check if valid
 std::string SevenSegSolver::swap_and_check(std::map<char, std::vector<char>> const& map, 
                                             std::string const& eqn,
                                             size_t const& it) {
+    // specific map to swap from is passed by reference
     if (map.find(eqn[it]) != map.end()) {
         // for each add_val replace and check validity of eqn
         for (char v : map.find(eqn[it])->second) {
             std::string temp = eqn;
             temp[it] = v;
             if (check_eqn(temp)) {
+                // toggle flag if solved
                 solved = true;
                 return temp;
             }
@@ -68,6 +71,8 @@ std::string SevenSegSolver::swap_and_check(std::map<char, std::vector<char>> con
 // Solve the 7-Segment Equation Problem
 // Assumes inputs are in correct format and that a valid answer exists
 // TODO: handle invalid inputs
+// TODO: handle negative integers
+// TODO: allow the equals sign to be moved
 std::string SevenSegSolver::solve(std::string const& eqn) {
     solved = false;
 
