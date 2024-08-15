@@ -19,7 +19,7 @@ class SevenSegSolver {
         std::map<char, std::vector<char>> remove_vals = {
             {'6', {'5'}},
             {'7', {'1'}},
-            {'8', {'6', '8', '9'}},
+            {'8', {'6', '9', '0'}},
             {'9', {'5'}},
             {'+', {'-'}}
         };

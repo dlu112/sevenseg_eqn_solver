@@ -55,28 +55,26 @@ std::string SevenSegSolver::solve(std::string const& eqn) {
     std::cout << "Initial equation: " << eqn << std::endl;
     if (check_eqn(eqn)) return eqn;
 
-    std::string eqn2;
     // iterate through each char in the string
     for (size_t i = 0; i < eqn.size(); i++) {    
         // skip any spaces in the equation
         if (!isspace(eqn[i])) {  
-            // reset eqn2
-            eqn2 = eqn;
-
             // TODO: reformat this
 
             // check for valid val from swapping a stick from c
             if (swap_vals.find(eqn[i]) != swap_vals.end()) {
                 // foreach swap_val, swap it into the eqn
-                for (char v : swap_vals.find(eqn2[i])->second) {
+                for (char v : swap_vals.find(eqn[i])->second) {
                     // replace with swapval and check validity of eqn
-                    eqn2[i] = v;
-                    if (check_eqn(eqn2)) return eqn2;
+                    std::string temp = eqn;
+                    temp[i] = v;
+                    if (check_eqn(temp)) return temp;
                 }
             }
             
             // also check for valid val from removing a stick from c
             if (remove_vals.find(eqn[i]) != remove_vals.end()) {
+                std::string eqn2 = eqn;
                 // for each remove_val
                 for (char v : remove_vals.find(eqn[i])->second) { 
                     // replace with new val
@@ -100,5 +98,5 @@ std::string SevenSegSolver::solve(std::string const& eqn) {
     }
     
     // TODO: handle an equation with no valid result
-    return eqn2;
+    return eqn;
 }
