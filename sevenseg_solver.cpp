@@ -33,7 +33,7 @@ int SevenSegSolver::solve_string_eqn(std::string const& eqn) {
 
 // Checks if a given string equation of form "x = y" is valid
 bool SevenSegSolver::check_eqn(std::string const& eqn) {
-    std::cout << "Checking equation: " << eqn << std::endl;
+    // std::cout << "Checking equation: " << eqn << std::endl;
     // split string into the two halves of the equation
     int splitter = eqn.find('=');
     std::string lhs_str = eqn.substr(0, splitter);
@@ -79,21 +79,9 @@ std::string SevenSegSolver::solve(std::string const& eqn) {
     for (size_t i = 0; i < eqn.size(); i++) {    
         // skip any spaces in the equation
         if (!isspace(eqn[i])) {  
-            // TODO: reformat this
-
             // check for valid val from swapping a stick from c
             std::string res = swap_and_check(swap_vals, eqn, i);
             if (solved) return res;
-
-            // if (swap_vals.find(eqn[i]) != swap_vals.end()) {
-            //     // foreach swap_val, swap it into the eqn
-            //     for (char v : swap_vals.find(eqn[i])->second) {
-            //         // replace with swapval and check validity of eqn
-            //         std::string temp = eqn;
-            //         temp[i] = v;
-            //         if (check_eqn(temp)) return temp;
-            //     }
-            // }
             
             // also check for valid val from removing a stick from c
             if (remove_vals.find(eqn[i]) != remove_vals.end()) {
@@ -108,15 +96,6 @@ std::string SevenSegSolver::solve(std::string const& eqn) {
                         // check for valid add_vals
                         std::string res = swap_and_check(add_vals, eqn2, j);
                         if (solved) return res;
-
-                        // if (add_vals.find(eqn2[j]) != add_vals.end()) {
-                        //     // for each add_val replace and check validity of eqn
-                        //     for (char v2 : add_vals.find(eqn2[j])->second) {
-                        //         std::string temp = eqn2;
-                        //         temp[j] = v2;
-                        //         if (check_eqn(temp)) return temp;
-                        //     }
-                        // }
                     }
                 }
             }            
